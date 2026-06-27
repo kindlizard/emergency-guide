@@ -1,0 +1,2024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  <meta name="description" content="Human-Centric Emergency Response guide for bystanders." />
+  <title>Emergency Guide</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --danger:      #D62828;
+      --caution:     #E07B00;
+      --safe:        #1A8A3C;
+      --blue:        #1A6FD6;
+      --bg:          #F5F5F5;
+      --surface:     #FFFFFF;
+      --surface2:    #F0F0F0;
+      --border:      #E0E0E0;
+      --text:        #111111;
+      --muted:       #666666;
+      --script:      #7B3F00;
+      --script-bg:   #FFF8ED;
+      --script-border: #E8C97A;
+      --warn-bg:     #FFF4F4;
+      --warn-border: #FFBBBB;
+      --warn-text:   #A00000;
+    }
+
+    html, body { height: 100%; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .hidden { display: none !important; }
+
+    /* ── HOME ── */
+    #screen-home {
+      padding: 48px 16px 60px;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .home-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .home-heading {
+      font-size: 30px;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+
+    .home-sub {
+      color: var(--muted);
+      font-size: 15px;
+      margin-bottom: 20px;
+    }
+
+    /* ── LOCATION BAR ── */
+    .location-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin-bottom: 24px;
+    }
+    .location-icon { font-size: 20px; flex-shrink: 0; }
+    .location-content { flex: 1; min-width: 0; }
+    .location-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2px;
+    }
+    .location-value {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .location-value.muted { color: var(--muted); font-weight: 400; }
+    .location-btn {
+      background: var(--danger);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 14px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .scenario-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .scenario-card {
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      padding: 18px 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      -webkit-tap-highlight-color: transparent;
+      width: 100%;
+      text-align: left;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+
+    .scenario-card:active { border-color: var(--danger); box-shadow: none; }
+
+    .scenario-icon { font-size: 28px; width: 40px; text-align: center; flex-shrink: 0; }
+    .scenario-text { flex: 1; }
+    .scenario-title { font-size: 17px; font-weight: 700; margin-bottom: 2px; color: var(--text); }
+    .scenario-summary { font-size: 13px; color: var(--muted); display: block; }
+    .scenario-arrow { color: #BBBBBB; font-size: 22px; }
+
+    /* ── GUIDE SCREEN ── */
+    #screen-guide {
+      display: flex;
+      flex-direction: column;
+      height: 100dvh;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .topbar {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+      padding: 0 16px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+
+    .topbar-row1 {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 0 8px;
+    }
+
+    .back-btn {
+      background: none;
+      border: none;
+      color: var(--danger);
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      min-height: 44px;
+      min-width: 44px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .guide-title {
+      font-size: 16px;
+      font-weight: 700;
+      text-align: center;
+      flex: 1;
+      color: var(--text);
+    }
+
+    .topbar-spacer { width: 60px; }
+
+    .call-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: var(--danger);
+      border: none;
+      border-radius: 12px;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 700;
+      padding: 14px 16px;
+      width: 100%;
+      cursor: pointer;
+      margin-bottom: 12px;
+      min-height: 54px;
+      letter-spacing: 0.3px;
+      -webkit-tap-highlight-color: transparent;
+      box-shadow: 0 2px 8px rgba(214,40,40,0.25);
+    }
+
+    .call-btn:active { opacity: 0.88; box-shadow: none; }
+
+    /* tab bar */
+    .tab-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid var(--border);
+    }
+
+    .tab-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      padding: 8px 2px;
+      cursor: pointer;
+      border: none;
+      border-bottom: 3px solid transparent;
+      background: none;
+      transition: border-color 0.15s;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .tab-btn .t-icon { font-size: 18px; }
+    .tab-btn .t-label { font-size: 9px; font-weight: 700; letter-spacing: 0.3px; color: var(--muted); text-transform: uppercase; }
+    .tab-btn.active .t-label { color: var(--text); }
+    .tab-btn.active { border-bottom-color: var(--danger); }
+
+    /* panels */
+    .panels {
+      flex: 1;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      background: var(--bg);
+    }
+
+    .panel { padding: 16px 16px 60px; display: none; }
+    .panel.visible { display: block; }
+
+    .panel-heading {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .panel-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+    .panel-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+
+    /* ── STEP CARD ── */
+    .step-card {
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 10px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+
+    .step-header { display: flex; align-items: flex-start; gap: 12px; }
+
+    .step-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      color: #fff;
+      font-weight: 700;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .step-title { font-size: 17px; font-weight: 700; margin-bottom: 3px; line-height: 1.3; color: var(--text); }
+    .step-summary { font-size: 14px; color: var(--muted); line-height: 1.5; }
+
+    .script-block {
+      margin-top: 12px;
+      background: var(--script-bg);
+      border-left: 3px solid var(--script-border);
+      border-radius: 4px;
+      padding: 10px 14px;
+      font-size: 15px;
+      font-weight: 600;
+      font-style: italic;
+      color: var(--script);
+      line-height: 1.6;
+    }
+
+    .warning-block {
+      margin-top: 10px;
+      background: var(--warn-bg);
+      border: 1px solid var(--warn-border);
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 13px;
+      color: var(--warn-text);
+      line-height: 1.5;
+    }
+
+    .warning-block::before { content: '⚠️  '; }
+
+    .expand-btn {
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.4px;
+      padding: 10px 0 0;
+      cursor: pointer;
+      min-height: 40px;
+      display: flex;
+      align-items: center;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .expanded { display: none; margin-top: 10px; }
+    .expanded.open { display: block; }
+
+    .step-detail { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 8px; }
+    .step-detail:last-child { margin-bottom: 0; }
+
+    /* call script inside step */
+    .call-script-heading {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .call-step {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 10px;
+      align-items: flex-start;
+    }
+
+    .call-step-num {
+      background: var(--surface2);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .call-step-text { font-size: 15px; color: var(--text); line-height: 1.5; }
+
+    .call-template {
+      background: var(--script-bg);
+      border: 1.5px solid var(--script-border);
+      border-radius: 10px;
+      padding: 14px;
+    }
+
+    .call-template-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--script);
+      margin-bottom: 8px;
+    }
+
+    .call-template-text { font-size: 15px; font-style: italic; color: var(--script); line-height: 1.6; }
+
+    /* ── PRACTICE ── */
+    #screen-practice-home, #screen-practice-scene {
+      max-width: 480px; margin: 0 auto; padding: 48px 16px 60px;
+    }
+    .practice-back { background: none; border: none; color: var(--blue); font-size: 15px; cursor: pointer; padding: 0; margin-bottom: 20px; display: block; }
+    .practice-scenario-card {
+      background: var(--surface); border: 1.5px solid var(--border); border-radius: 14px;
+      padding: 20px; margin-bottom: 14px; width: 100%; text-align: left; cursor: pointer;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .practice-scenario-card:hover { border-color: var(--blue); }
+    .practice-scenario-icon { font-size: 28px; }
+    .practice-scenario-title { font-size: 17px; font-weight: 700; }
+    .practice-scenario-sub { font-size: 13px; color: var(--muted); margin-top: 2px; }
+
+    .practice-progress { font-size: 12px; color: var(--muted); margin-bottom: 16px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+    .practice-illustration { width: 100%; border-radius: 12px; overflow: hidden; margin-bottom: 20px; background: var(--surface2); }
+    .practice-illustration svg { width: 100%; display: block; }
+    .practice-situation { font-size: 16px; font-weight: 600; line-height: 1.5; margin-bottom: 20px; }
+    .practice-question { font-size: 14px; color: var(--muted); margin-bottom: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+    .practice-choice {
+      width: 100%; text-align: left; background: var(--surface); border: 1.5px solid var(--border);
+      border-radius: 10px; padding: 14px 16px; font-size: 15px; cursor: pointer; margin-bottom: 10px;
+      display: block; line-height: 1.4; transition: border-color 0.15s;
+    }
+    .practice-choice:hover:not(:disabled) { border-color: var(--blue); }
+    .practice-choice.correct { border-color: var(--safe); background: #F0FAF4; color: var(--safe); }
+    .practice-choice.wrong { border-color: var(--danger); background: #FFF4F4; color: var(--danger); }
+    .practice-choice.dimmed { opacity: 0.4; }
+    .practice-feedback {
+      border-radius: 10px; padding: 14px 16px; font-size: 14px; line-height: 1.6; margin-bottom: 20px;
+    }
+    .practice-feedback.correct { background: #F0FAF4; border: 1.5px solid var(--safe); color: #0d5c28; }
+    .practice-feedback.wrong { background: #FFF4F4; border: 1.5px solid var(--danger); color: #A00000; }
+    .practice-next { width: 100%; padding: 16px; background: var(--blue); color: #fff; border: none; border-radius: 10px; font-size: 16px; font-weight: 700; cursor: pointer; margin-top: 4px; }
+    .practice-closing { background: var(--surface); border: 1.5px solid var(--border); border-radius: 14px; padding: 24px; text-align: center; }
+    .practice-closing-icon { font-size: 40px; margin-bottom: 12px; }
+    .practice-closing-title { font-size: 20px; font-weight: 800; margin-bottom: 8px; }
+    .practice-closing-text { font-size: 15px; color: var(--muted); line-height: 1.6; margin-bottom: 20px; }
+    .practice-restart { background: none; border: 1.5px solid var(--border); border-radius: 10px; padding: 12px 24px; font-size: 15px; cursor: pointer; margin-right: 10px; }
+    .practice-home-btn { background: var(--blue); color: #fff; border: none; border-radius: 10px; padding: 12px 24px; font-size: 15px; cursor: pointer; }
+
+    /* ── EMOTIONAL PANEL ── */
+    .say-intro { font-size: 14px; color: var(--muted); margin-bottom: 16px; line-height: 1.6; }
+
+    .near-banner { background: var(--surface); border: 1.5px solid var(--blue); border-radius: 10px; padding: 14px 16px; margin-bottom: 18px; }
+    .near-row { display: flex; align-items: baseline; gap: 10px; padding: 4px 0; }
+    .near-letter { font-size: 17px; font-weight: 700; color: var(--blue); min-width: 16px; }
+    .near-text { font-size: 14px; color: var(--text); line-height: 1.5; }
+
+    .script-card {
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 10px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+
+    .script-card-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .script-card-line {
+      font-size: 16px;
+      font-weight: 600;
+      font-style: italic;
+      color: var(--script);
+      line-height: 1.5;
+      margin-bottom: 6px;
+    }
+
+    .script-card-when { font-size: 12px; color: var(--muted); line-height: 1.4; }
+
+    .do-not-heading {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--danger);
+      margin: 20px 0 10px;
+    }
+
+    .do-not-item {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      margin-bottom: 8px;
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .do-not-item::before { content: '✕'; color: var(--danger); font-weight: 700; flex-shrink: 0; }
+
+    /* ── HARD QUESTIONS ── */
+    .hq-card {
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 14px 12px;
+      margin-bottom: 10px;
+    }
+    .hq-question {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .hq-why {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 10px;
+      line-height: 1.5;
+    }
+    .hq-say {
+      background: var(--script-bg);
+      border-left: 3px solid var(--script-border);
+      border-radius: 0 6px 6px 0;
+      padding: 8px 10px;
+      font-size: 14px;
+      color: var(--script);
+      line-height: 1.5;
+      margin-bottom: 8px;
+    }
+    .hq-say-label {
+      font-weight: 700;
+      margin-right: 4px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .hq-option { margin-bottom: 6px; }
+    .hq-option-when {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted);
+      margin-bottom: 3px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+    /* ── FIND SUPPLIES BUTTON ── */
+    .find-supplies-btn {
+      display: block;
+      margin-top: 12px;
+      padding: 10px 14px;
+      background: var(--blue);
+      color: #fff;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    /* ── DRIVER CALLOUT ── */
+    .callout-box {
+      background: #EEF4FF;
+      border: 1.5px solid #B8D0FF;
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin-bottom: 14px;
+    }
+    .callout-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--blue);
+      margin-bottom: 4px;
+    }
+    .callout-body {
+      font-size: 13px;
+      color: #1a3a6b;
+      line-height: 1.6;
+    }
+
+    .hq-donot {
+      font-size: 13px;
+      color: var(--warn-text);
+      background: var(--warn-bg);
+      border-radius: 6px;
+      padding: 7px 10px;
+      line-height: 1.5;
+      margin-top: 4px;
+    }
+
+    /* ── WARNINGS ── */
+    .warn-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      background: var(--warn-bg);
+      border: 1px solid var(--warn-border);
+      border-radius: 10px;
+      padding: 14px;
+      margin-bottom: 10px;
+      font-size: 15px;
+      color: var(--warn-text);
+      line-height: 1.5;
+    }
+
+    .warn-icon { font-size: 18px; flex-shrink: 0; }
+
+    /* ── MODAL ── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 200;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    .modal-overlay.open { display: flex; }
+
+    .modal-box {
+      background: var(--surface);
+      border-radius: 20px 20px 0 0;
+      padding: 28px 20px 48px;
+      width: 100%;
+      max-width: 480px;
+      border-top: 1px solid var(--border);
+    }
+
+    .modal-title { font-size: 20px; font-weight: 700; margin-bottom: 8px; color: var(--text); }
+    .modal-body { font-size: 15px; color: var(--muted); margin-bottom: 24px; line-height: 1.5; }
+    .modal-num { color: var(--danger); font-weight: 700; font-size: 24px; }
+    .modal-actions { display: flex; flex-direction: column; gap: 10px; }
+
+    .modal-call-btn {
+      background: var(--danger);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 18px;
+      font-size: 19px;
+      font-weight: 700;
+      cursor: pointer;
+      min-height: 56px;
+    }
+
+    .modal-cancel-btn {
+      background: var(--surface2);
+      color: var(--muted);
+      border: none;
+      border-radius: 12px;
+      padding: 16px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      min-height: 52px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     HOME SCREEN
+══════════════════════════════════════════ -->
+<div id="screen-home">
+  <p class="home-label" id="app-name"></p>
+  <h1 class="home-heading">What's happening?</h1>
+  <p class="home-sub">Tap a situation for immediate guidance.</p>
+
+  <div class="location-bar" id="location-bar">
+    <div class="location-icon">📍</div>
+    <div class="location-content">
+      <div class="location-label">Your location</div>
+      <div class="location-value" id="location-value">Tap to get your location</div>
+    </div>
+    <button class="location-btn" id="location-btn" onclick="getLocation()">Get</button>
+  </div>
+
+  <p class="section-label">Situations</p>
+  <div class="scenario-list" id="scenario-list"></div>
+
+  <p class="section-label" style="margin-top:28px">Practice</p>
+  <p class="home-sub" style="margin-bottom:12px;margin-top:-6px">Test yourself with a real scenario.</p>
+  <div class="scenario-list">
+    <button class="scenario-card" onclick="openPracticeHome()">
+      <span class="scenario-icon">🎯</span>
+      <div class="scenario-text">
+        <div class="scenario-title">Practice scenarios</div>
+        <div class="scenario-sub">Branching situations — make decisions, get feedback</div>
+      </div>
+      <span class="scenario-arrow">›</span>
+    </button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     GUIDE SCREEN
+══════════════════════════════════════════ -->
+<div id="screen-guide" class="hidden">
+
+  <div class="topbar">
+    <div class="topbar-row1">
+      <button class="back-btn" onclick="goHome()" aria-label="Back to home">← Back</button>
+      <div class="guide-title" id="guide-title"></div>
+      <div class="topbar-spacer"></div>
+    </div>
+
+    <button class="call-btn" id="call-btn" onclick="openModal()" aria-label="Call emergency services">
+      📞 <span id="call-btn-label">Call 999</span>
+    </button>
+
+    <div class="tab-bar" role="tablist">
+      <button class="tab-btn" id="tab-physical" onclick="switchTab('physical')" role="tab" aria-selected="false">
+        <span class="t-icon">🩺</span><span class="t-label">Physical</span>
+      </button>
+      <button class="tab-btn" id="tab-emotional" onclick="switchTab('emotional')" role="tab" aria-selected="false">
+        <span class="t-icon">💬</span><span class="t-label">Emotional</span>
+      </button>
+      <button class="tab-btn" id="tab-crowd"  onclick="switchTab('crowd')"  role="tab" aria-selected="false">
+        <span class="t-icon">🚨</span><span class="t-label">Crowd</span>
+      </button>
+      <button class="tab-btn" id="tab-warn"   onclick="switchTab('warn')"   role="tab" aria-selected="false">
+        <span class="t-icon">⚠️</span><span class="t-label">Don't</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="panels" id="panels">
+
+    <!-- PHYSICAL (steps + call script inline) -->
+    <div class="panel" id="panel-physical" role="tabpanel">
+      <div class="panel-heading">
+        <div class="panel-dot" style="background:var(--danger)"></div>
+        <span class="panel-title" style="color:var(--danger)">Physical Response</span>
+      </div>
+      <div id="steps-physical"></div>
+    </div>
+
+    <!-- EMOTIONAL (say scripts + do not say) -->
+    <div class="panel" id="panel-emotional" role="tabpanel">
+      <div class="panel-heading">
+        <div class="panel-dot" style="background:var(--blue)"></div>
+        <span class="panel-title" style="color:var(--blue)">Emotional Support</span>
+      </div>
+      <div class="near-banner" id="near-banner">
+        <div class="near-row"><span class="near-letter">N</span><span class="near-text">Get <strong>Near</strong> — crouch or sit at their level</span></div>
+        <div class="near-row"><span class="near-letter">E</span><span class="near-text"><strong>Explain</strong> — "I'm [name]. Help is on the way."</span></div>
+        <div class="near-row"><span class="near-letter">A</span><span class="near-text"><strong>Ask</strong> — "What's your name? Is there someone I can call for you?"</span></div>
+        <div class="near-row"><span class="near-letter">R</span><span class="near-text"><strong>Reassure</strong> — keep talking, keep checking in</span></div>
+      </div>
+      <p class="say-intro" id="say-intro"></p>
+      <div id="say-scripts"></div>
+      <div id="say-questions"></div>
+      <p class="do-not-heading" id="say-donot-heading">Do not say</p>
+      <div id="say-donot"></div>
+    </div>
+
+    <!-- CROWD -->
+    <div class="panel" id="panel-crowd" role="tabpanel">
+      <div class="panel-heading">
+        <div class="panel-dot" style="background:var(--caution)"></div>
+        <span class="panel-title" style="color:var(--caution)">Crowd Control & Dignity</span>
+      </div>
+      <div id="steps-crowd"></div>
+    </div>
+
+    <!-- DON'T -->
+    <div class="panel" id="panel-warn" role="tabpanel">
+      <div class="panel-heading">
+        <div class="panel-dot" style="background:var(--danger)"></div>
+        <span class="panel-title" style="color:var(--danger)">Do Not Do This</span>
+      </div>
+      <div id="warn-list"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PRACTICE HOME SCREEN
+══════════════════════════════════════════ -->
+<div id="screen-practice-home" class="hidden">
+  <button class="practice-back" onclick="goHome()">← Back</button>
+  <h1 class="home-heading" style="margin-bottom:6px">Practice</h1>
+  <p class="home-sub" style="margin-bottom:24px">Choose a scenario. Make decisions. Get feedback.</p>
+  <button class="practice-scenario-card" onclick="startPractice('traffic')">
+    <span class="practice-scenario-icon">🚗</span>
+    <div>
+      <div class="practice-scenario-title">Traffic Accident</div>
+      <div class="practice-scenario-sub">3 decisions · ~2 minutes</div>
+    </div>
+  </button>
+  <button class="practice-scenario-card" onclick="startPractice('train')">
+    <span class="practice-scenario-icon">🚇</span>
+    <div>
+      <div class="practice-scenario-title">Someone Unwell on the Train</div>
+      <div class="practice-scenario-sub">3 decisions · ~2 minutes</div>
+    </div>
+  </button>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PRACTICE SCENE SCREEN
+══════════════════════════════════════════ -->
+<div id="screen-practice-scene" class="hidden">
+  <button class="practice-back" onclick="goToPracticeHome()">← Back</button>
+  <div class="practice-progress" id="practice-progress"></div>
+  <div class="practice-illustration" id="practice-illustration"></div>
+  <p class="practice-situation" id="practice-situation"></p>
+  <p class="practice-question">What do you do?</p>
+  <div id="practice-choices"></div>
+  <div id="practice-feedback" class="hidden"></div>
+  <button class="practice-next hidden" id="practice-next-btn" onclick="practiceNext()">Continue →</button>
+</div>
+
+<!-- ══════════════════════════════════════════
+     DIALER MODAL
+══════════════════════════════════════════ -->
+<div class="modal-overlay" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal-box">
+    <p class="modal-title" id="modal-title">Call Emergency Services</p>
+    <p class="modal-body">This will dial <span class="modal-num" id="modal-num"></span>.</p>
+    <div class="modal-actions">
+      <button class="modal-call-btn" id="modal-call-btn">📞 Call Now</button>
+      <button class="modal-cancel-btn" onclick="closeModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ─────────────────────────────────────────────
+// CONFIGURATION — edit these for your country
+// ─────────────────────────────────────────────
+const CONFIG = {
+  emergencyNumber: '999',      // ← change per country (911, 112, 000, etc.)
+  crisisLine:      '116 123',  // ← mental health / crisis line
+  appName:         'Emergency Guide',
+};
+
+const SCENARIOS = [
+
+  // ══════════════════════════════════════════
+  // TRAFFIC ACCIDENT
+  // ══════════════════════════════════════════
+  {
+    id: 'traffic-accident',
+    icon: '🚗',
+    title: 'Traffic Accident',
+    summary: 'Vehicle collision, road incident',
+    color: '#FF8C00',
+
+    call: {
+      number: CONFIG.emergencyNumber,
+      script: [
+        'Say: "I am reporting a road traffic accident."',
+        'Give your exact location — road name, junction, or landmark.',
+        'Say how many vehicles are involved.',
+        'Say how many people appear injured.',
+        'Say if anyone is trapped, unconscious, or not breathing.',
+        'Say if there is fire, fuel leaking, or ongoing hazard.',
+        'Stay on the line — the operator will guide you.',
+      ],
+      template: `"I'm calling to report a traffic accident at [LOCATION]. There are [NUMBER] vehicles involved. I can see [NUMBER] people who appear injured. [One person appears unconscious / Someone is trapped]."`,
+    },
+
+    physical: [
+      {
+        order: 1,
+        title: 'Assess the scene — your safety comes first',
+        summary: 'Stop. Look. Only move when it is safe.',
+        detail: 'Scan for oncoming traffic, fuel leaks, fire, or unstable vehicles. On a highway, crossing live lanes risks forcing other drivers to brake or swerve — causing a second accident. If you cannot reach the scene safely, stay back and call 995. That is a valid form of help.',
+        warning: 'An injured helper makes the situation worse. If it is not safe to approach, do not.',
+        socialScript: null,
+      },
+      {
+        order: 2,
+        title: 'Make the scene visible and direct traffic',
+        summary: 'Warn approaching drivers. Get them to slow down.',
+        detail: 'Turn on the crashed vehicle\'s hazard lights if it is safe to reach. If you arrived by car, turn on your own hazard lights and place your warning triangle.\n\nDirect traffic: stand well back from the live lane and use clear hand gestures to slow down approaching drivers. Ask bystanders to help do the same.\n\nTo slow down drivers: raise your arm, palm facing down, and push downward repeatedly — as if gently patting the air.\n\nNever stand in a live traffic lane.',
+        warning: null,
+        socialScript: null,
+      },
+      {
+        order: 3,
+        title: 'Call emergency services',
+        summary: 'Call 995 yourself. If you can\'t, point at someone and tell them to call.',
+        detail: 'Call 995 yourself if you are able to. Stay on the line — the dispatcher will guide you.\n\nIf you are already occupied (helping the injured person, doing CPR), do not leave them. Point directly at one specific person in the crowd and make eye contact:\n\n"You — call 995 now. Tell them we\'re at [LOCATION]. Stay on the line with them."\n\nIf the scene still needs to be made visible, point at a second person:\n\n"You — turn on the hazard lights and stand back there to warn traffic."',
+        warning: null,
+        socialScript: null,
+        isCallStep: true,
+      },
+      {
+        order: 4,
+        title: 'Approach only when safe — check on the injured',
+        summary: 'Get close. Speak clearly. Do not move them.',
+        detail: 'Approach from the side, away from traffic. Get close enough to speak to them clearly. Ask if they can hear you. Note if they are conscious, breathing, or bleeding visibly. Report this to the dispatcher. Do not move anyone unless there is immediate danger (fire, flooding).',
+        warning: 'Do not move an injured person. Spinal injuries are common in collisions — movement can cause permanent harm.',
+        socialScript: '"Can you hear me? My name is [NAME]. I\'m here with you and help is on the way."',
+      },
+      {
+        order: 5,
+        title: 'Call for trained help and locate the nearest AED if needed',
+        summary: 'Shout for anyone with first aid or BCLS training.',
+        detail: 'Now that you know what you are dealing with, shout clearly to the crowd: "Does anyone here have first aid training? Please come forward."\n\nAt the same time, check the myResponder app (Singapore Civil Defence Force) to locate the nearest AED. You can also point at a bystander and ask them to do this while you stay with the injured person.\n\nIf someone with training steps forward, let them take over or assist — do not block them.\n\nWhen to get the AED: if the person is unresponsive and not breathing normally, that is cardiac arrest — get the AED immediately. You do not need to know how to use it. The 995 dispatcher will guide you through using it, and the AED itself gives voice instructions step by step. Run to get it and hand it to whoever is helping, or use it yourself. Every second counts.',
+        warning: null,
+        socialScript: '"Does anyone here have first aid training? Please come forward."',
+      },
+      {
+        order: 5,
+        title: 'If you know first aid or CPR — use it now',
+        summary: 'Trained? Step in. Not trained? Stay, talk, and keep them calm.',
+        detail: 'If you have first aid or CPR training, now is the time to use it. Check for breathing. Control severe bleeding with firm pressure. If they are not breathing and you know CPR, begin immediately — the emergency operator can also talk you through it if needed. If you are not trained, the most important things you can do are stay with them, keep them still, and keep talking to them calmly.',
+        warning: null,
+        socialScript: null,
+      },
+      {
+        order: 5,
+        title: 'If blood or body fluids are visible',
+        summary: 'Get a barrier before any contact. Ask around or send someone.',
+        detail: 'Most people will not have a first aid kit on them. You can do all of these things at the same time by pointing at different people:\n\n— Use sterile gauze if available. If not, a clean t-shirt or tea towel works as an improvised dressing. Ask people nearby if anyone has any of these.\n— If no one has anything, point at one bystander and ask them to run to the nearest shop — any shop — and ask if they have a first aid kit.\n\nIn the meantime, use a plastic bag over your hands as improvised gloves. Avoid direct contact with blood or body fluids.',
+        warning: 'Do not touch blood or body fluids without a barrier. This protects both you and the victim.',
+        socialScript: null,
+        findSupplies: true,
+      },
+      {
+        order: 6,
+        title: 'Control visible bleeding',
+        summary: 'Firm pressure with a clean cloth. Do not release.',
+        detail: 'If there is severe bleeding and you can reach the wound safely: apply firm, continuous pressure with a clean cloth or sanitary pad. Do not remove the cloth if it soaks through — add more on top. If an object is embedded in the wound, do not remove it. Apply pressure around it.',
+        warning: 'Never remove embedded objects. They may be preventing further bleeding.',
+        socialScript: null,
+      },
+      {
+        order: 7,
+        title: 'Send someone to guide the ambulance in',
+        summary: 'Point at one person — go to the entrance and wave them in.',
+        detail: 'As soon as you can, point at a calm bystander and ask them to go to the nearest road entrance or junction and wave the ambulance in when it arrives. This saves critical time — paramedics may not be able to see exactly where the victim is.',
+        warning: null,
+        socialScript: '"Can you go to [ENTRANCE/CORNER] and wave the ambulance over when you see it? That would really help."',
+      },
+      {
+        order: 8,
+        title: 'Hand off to emergency responders',
+        summary: 'Tell them everything you observed. Then step back.',
+        detail: 'When paramedics arrive, tell them: how long ago the incident happened, whether the person was conscious the whole time, any changes you noticed, what you did. Then step back and let them work.',
+        warning: null,
+        socialScript: null,
+      },
+    ],
+
+    say: {
+      intro: 'Follow this order. You do not need to fill every silence — your presence alone is stabilising.',
+      scripts: [
+        {
+          label: '1 — Get to their level',
+          line: null,
+          when: 'Crouch or kneel so you are not looming over them. Make eye contact. Speak slowly and calmly.',
+        },
+        {
+          label: '2 — Identify yourself',
+          line: 'Hi, my name is [YOUR NAME]. I\'ve called for help — they\'re on the way.',
+          when: 'Say your name. It makes you a person, not a stranger. The key message: help is coming.',
+        },
+        {
+          label: '3 — Ask their name (if conscious and talking)',
+          line: 'What\'s your name?',
+          when: 'A simple grounding question. Once you know it, use it — addressing someone by name is more human and helps keep them present. "Okay [NAME], I\'m right here with you."',
+        },
+        {
+          label: '4 — Ask if there is someone to call (if conscious)',
+          line: 'Is there someone I can call for you?',
+          when: 'A simple, practical question. It is the one question PFA sources recommend asking.',
+        },
+        {
+          label: '5 — If they are unconscious, talk to them anyway',
+          line: 'My name is [YOUR NAME]. I\'m right here with you. Help is coming.',
+          when: 'Hearing may still be present even when someone is unconscious. Keep talking.',
+        },
+        {
+          label: '6 — Keep reassuring them — repeatedly',
+          line: '[NAME], help is on the way. I\'m right here with you.',
+          when: 'Shock affects memory. They may not have taken it in the first time. Say it again, gently, as many times as needed.',
+        },
+        {
+          label: 'Offering touch',
+          line: 'Is it okay if I hold your hand?',
+          when: '"Take care of the injured person and touch them calmingly, if you feel comfortable doing so." — Finnish Red Cross\n\nA calm hand on their shoulder, upper arm, or hand can help them feel less alone. Ask permission first, or at minimum tell them before you reach out.\n\nBefore touching, look first — check for visible blood or wounds on the area you are about to touch. If there is any blood, do not touch that area.',
+        },
+        {
+          label: 'If they panic or become very distressed',
+          line: null,
+          whenHtml: '<strong>Panicking or hyperventilating</strong><br><br>Do not say "calm down" or "breathe." Get into their line of sight and say: "I\'m right here with you. Can you feel my hand? I\'m right here." Eye contact and a calm voice grounds better than instructions.<br><br><strong>Distressed or crying but talking</strong><br><br>Do not try to fix the emotion or rush them. Presence and acknowledgement is enough: "I can see you\'re in a lot of pain. I\'m not going anywhere." Let them cry. Don\'t fill the silence.<br><br><strong>Not responding or seeming disconnected</strong><br><br>Keep talking anyway. Use their name. "I\'m right here, [NAME]. Help is on the way."',
+        },
+        {
+          label: 'Before you move away',
+          line: 'I\'m going to [ACTION] — I\'ll be back in [TIME]. I\'m not leaving you.',
+          when: 'Every time you need to step away, even briefly. Always tell them before you move.',
+        },
+        {
+          label: 'If it is very hot — shade them. If it is raining — shelter them.',
+          line: null,
+          when: 'Use an umbrella or ask a bystander to hold one over them. Heat worsens shock. Rain adds to distress and discomfort.',
+        },
+      ],
+      doNotSay: [
+        'You\'re going to be okay. (You cannot promise this.)',
+        'Calm down. (Dismisses their experience. Does not work.)',
+        'I know how you feel. (You don\'t, and they know it.)',
+        'It\'s not that bad. (Minimising. Erodes trust.)',
+        'What happened? (Do not ask them to relive the event right now.)',
+        'Don\'t worry. (Empty phrase that signals there is something to worry about.)',
+        'It could have been worse. (Dismisses what they actually went through.)',
+        'At least you\'re alive. (Toxic positivity. Does not help.)',
+      ],
+      hardQuestions: [
+        {
+          question: '"What has happened to me?"',
+          why: 'They may be disoriented, concussed, or in shock. They genuinely may not know.',
+          say: 'You\'ve been in an accident. You\'re hurt. I\'ve called an ambulance and they\'re on their way. I\'m staying right here with you.',
+          doNot: 'Do not say "Everything is fine" or deflect. Confusion without grounding increases panic.',
+        },
+        {
+          question: '"Where is my family member?" (who is also injured)',
+          why: 'This is one of the hardest questions. What you say depends on what you can see.',
+          say: null,
+          options: [
+            { when: 'If you can see them being helped', say: 'Someone is with them right now. They\'re getting help too.' },
+            { when: 'If you don\'t know where they are', say: 'I don\'t know yet. The paramedics are coming and they will look after everyone. Right now I\'m here with you.' },
+            { when: 'If they have clearly died', say: 'The emergency services are on their way. They will help everyone here.' },
+          ],
+          doNot: 'Do not confirm death — you are not trained to deliver that news. That is for paramedics. Do not say "They\'re fine" if you don\'t know.',
+        },
+        {
+          question: '"Am I going to be okay?"',
+          why: 'They are scared and need honesty, not false comfort.',
+          say: 'I don\'t know — but help is coming and you are not alone. I\'m right here.',
+          doNot: 'Never say "You\'ll be fine." You cannot promise that, and if it isn\'t true, it destroys trust.',
+        },
+      ],
+    },
+
+    crowd: [],
+
+    warnings: [
+      'Do not move an injured person unless immediate danger (fire, flood) requires it.',
+      'Do not remove objects embedded in wounds.',
+      'Do not touch blood or body fluids without a barrier.',
+      'Do not give the person food, water, or medication.',
+      'Do not leave them alone without telling them where you are going.',
+      'Do not say "You\'ll be okay" or make any promise about the outcome.',
+      'Do not move the vehicle unless it is actively causing danger.',
+    ],
+  },
+
+  // ══════════════════════════════════════════
+  // PERSON COLLAPSED — HIDDEN FOR NOW
+  /*
+  // ══════════════════════════════════════════
+  {
+    id: 'collapsed-unconscious',
+    icon: '🫀',
+    title: 'Person Collapsed',
+    summary: 'Unconscious, unresponsive, or not breathing',
+    color: '#FF2D2D',
+
+    call: {
+      number: CONFIG.emergencyNumber,
+      script: [
+        'Say: "Someone has collapsed and is unconscious."',
+        'Give your exact location — address, building name, or landmark.',
+        'Say if they are breathing or not.',
+        'Say if they have a pulse.',
+        'Stay on the line — the operator can guide you through CPR.',
+      ],
+      template: `"Someone has collapsed at [LOCATION]. They are unconscious and [are/are not] breathing. I need guidance on what to do next. I'll stay on the line."`,
+    },
+
+    physical: [
+      {
+        order: 1,
+        title: 'Check scene safety first',
+        summary: 'Look before you approach.',
+        detail: 'Scan for traffic, hazards, or risks. Do not rush in. A two-second check protects you and avoids creating a second casualty.',
+        warning: 'Your safety is not optional. An injured helper helps no one.',
+        socialScript: null,
+      },
+      {
+        order: 2,
+        title: 'Tap and shout — check response',
+        summary: 'Firm tap on both shoulders. Shout clearly.',
+        detail: 'Tap firmly on both shoulders and shout: "Are you okay? Can you hear me?" Do not shake violently. If no response, they are unresponsive — move to the next step.',
+        warning: null,
+        socialScript: '"Are you okay? Can you hear me?"',
+      },
+      {
+        order: 3,
+        title: 'Point at one person to call for help',
+        summary: 'One person. Direct eye contact. Specific task.',
+        detail: 'Point directly at one person, make eye contact, and assign the task. Confirm they are acting. If they hesitate, pick someone else immediately. Never ask the general crowd — diffusion of responsibility means no one acts.',
+        warning: null,
+        socialScript: '"YOU — call emergency services right now and tell them someone has collapsed. Are you calling?"',
+        isCallStep: true,
+      },
+      {
+        order: 4,
+        title: 'Check for breathing — 10 seconds',
+        summary: 'Tilt head back. Look, listen, feel.',
+        detail: 'Place one hand on their forehead, two fingers under the chin, tilt gently. Look for chest rise, listen for breath sounds, feel for air on your cheek. Count to 10.',
+        warning: null,
+        socialScript: null,
+      },
+      {
+        order: 5,
+        title: 'Not breathing → Start CPR',
+        summary: '30 compressions. 2 breaths. Repeat.',
+        detail: 'Kneel beside them. Heel of your hand on the centre of their chest. Lock fingers. Push hard and fast — 2 inches deep, 100–120 per minute. After 30, tilt head, pinch nose, give 2 breaths. Keep going until help arrives. The emergency operator can talk you through it.',
+        warning: 'Push harder than feels comfortable. Effective CPR requires real force.',
+        socialScript: null,
+      },
+      {
+        order: 6,
+        title: 'Breathing → Recovery position',
+        summary: 'Roll onto their side. Knee bent. Airway open.',
+        detail: 'If they are breathing but unconscious: roll them onto their side, bend the top knee to 90° to stabilise, tilt head back slightly to keep airway open. Stay with them and monitor breathing.',
+        warning: null,
+        socialScript: null,
+      },
+    ],
+
+    say: {
+      intro: 'Even if they appear unconscious, speak to them. Hearing can persist.',
+      scripts: [
+        {
+          label: 'Announce yourself',
+          line: 'My name is [NAME]. I\'m right here with you. I\'m not going anywhere.',
+          when: 'As soon as you reach them — even if unconscious.',
+        },
+        {
+          label: 'Narrate your actions',
+          line: 'I\'m going to check if you\'re breathing. I\'m right here.',
+          when: 'Before each physical action.',
+        },
+        {
+          label: 'Tell them help is coming',
+          line: 'Help has been called. They are on their way to you right now.',
+          when: 'After calling emergency services. Do not say "You\'ll be okay."',
+        },
+        {
+          label: 'If stepping away',
+          line: 'I\'m going to [ACTION]. I\'ll be back in [TIME]. I\'m coming right back.',
+          when: 'Every single time you move away, even for seconds.',
+        },
+      ],
+      doNotSay: [
+        'You\'re going to be okay.',
+        'Don\'t die on me.',
+        'Stay with me! (Shouting increases distress in semi-conscious people.)',
+        'What happened to you?',
+        'Calm down.',
+      ],
+    },
+
+    crowd: [
+      {
+        order: 1,
+        title: 'Break bystander paralysis immediately',
+        summary: 'Point at one person. Assign one task. Confirm.',
+        detail: 'The moment you arrive, pick one bystander and assign them a specific role. Do not ask the group. People freeze in crowds because they assume someone else will act.',
+        socialScript: '"YOU — yes, you — call emergency services right now. Tell them someone is unconscious. Are you calling?"',
+      },
+      {
+        order: 2,
+        title: 'Clear the space',
+        summary: 'Ask people to step back. Use your body as a barrier.',
+        detail: 'Stand up briefly and say firmly: "Please step back and give us space." Most people comply with a direct, calm instruction. Assign one bystander to hold the perimeter.',
+        socialScript: '"Everyone please step back — we need space. Thank you."',
+      },
+      {
+        order: 3,
+        title: 'Stop filming — individually, not to the crowd',
+        summary: 'Address one person at a time. Keep it calm.',
+        detail: 'Do not announce filming must stop to the whole crowd — it causes argument. Walk up to individuals filming and speak quietly and directly.',
+        socialScript: '"Please stop filming. This person deserves dignity right now. Thank you."',
+      },
+      {
+        order: 4,
+        title: 'Send someone to meet the ambulance',
+        summary: 'One bystander. Nearest entrance. Wave it in.',
+        detail: 'Choose one calm bystander, tell them exactly where to stand, and ask them to flag the ambulance as soon as it arrives.',
+        socialScript: '"Can you go to [ENTRANCE] and wave the ambulance in when it arrives? That saves critical time."',
+      },
+    ],
+
+    warnings: [
+      'Do not move them unless immediate danger requires it.',
+      'Do not give food, water, or medication.',
+      'Do not leave them without announcing where you are going.',
+      'Do not tilt the head if you suspect a spinal injury from a fall or impact.',
+      'Do not stop CPR once started unless they recover or professionals take over.',
+      'Do not touch blood without a barrier.',
+    ],
+  },
+  */
+
+  // ══════════════════════════════════════════
+  // SENSORY OVERLOAD / MELTDOWN — HIDDEN FOR NOW
+  /*
+  {
+    id: 'sensory-meltdown',
+    icon: '🧠',
+    title: 'Sensory Overload / Meltdown',
+    summary: 'Distress, panic, or meltdown in a public space',
+    color: '#2D8EFF',
+
+    call: {
+      number: CONFIG.crisisLine,
+      script: [
+        'This line is for mental health and emotional crisis support.',
+        'You do not need to be in danger to call.',
+        'Tell them you are with someone in distress in a public space.',
+        'They can advise you on how to help.',
+      ],
+      template: `"I'm with someone who is in severe distress in a public space. They are not physically injured but I'd like some guidance on how to help them."`,
+    },
+
+    physical: [
+      {
+        order: 1,
+        title: 'Reduce stimulation immediately',
+        summary: 'Turn off sounds, dim lights, create space.',
+        detail: 'Identify the loudest or most overwhelming stimulus nearby and reduce it if possible. Move to a quieter space only if they agree. Do not touch or guide without asking.',
+        warning: 'Do not touch without asking first — unexpected touch during overload can feel like an attack.',
+        socialScript: null,
+      },
+      {
+        order: 2,
+        title: 'Ask before offering anything',
+        summary: 'Hold out — do not hand. Let them choose.',
+        detail: 'Offer a water bottle, soft item, or textured object by holding it out and waiting. Do not place anything in their hands or on their body. If they do not take it, that is fine — withdraw the offer without comment.',
+        warning: null,
+        socialScript: '"I have some water here if you want it — completely up to you."',
+      },
+      {
+        order: 3,
+        title: 'Offer one simple choice when calmer',
+        summary: 'Two options maximum. Accept any answer including silence.',
+        detail: 'Once breathing slows or movement reduces, offer exactly one choice with two options. If they cannot answer, do not repeat the question. That silence is an answer too.',
+        warning: null,
+        socialScript: '"Would you like to stay here or move somewhere quieter?"',
+      },
+    ],
+
+    say: {
+      intro: 'Less is more. One sentence at a time. Long pauses between.',
+      scripts: [
+        {
+          label: 'Announce yourself quietly',
+          line: 'My name is [NAME]. I\'m going to sit nearby if that\'s okay.',
+          when: 'When you first approach. Give them the choice to reject your presence.',
+        },
+        {
+          label: 'Signal safety — no demands',
+          line: 'I\'m here. [10 second pause] Take all the time you need.',
+          when: 'While they are distressed. Do not say anything else.',
+        },
+        {
+          label: 'Validate without pushing',
+          line: 'This sounds really hard. You don\'t need to explain anything.',
+          when: 'If they start to speak or seem like they are trying to.',
+        },
+        {
+          label: 'Before moving',
+          line: 'I\'m going to [ACTION]. I\'ll be back. I\'ll tell you before I go.',
+          when: 'Any time you need to move.',
+        },
+      ],
+      doNotSay: [
+        'Calm down.',
+        'You\'re fine.',
+        'It\'s not a big deal.',
+        'What\'s wrong? (Demands processing they cannot do right now.)',
+        'I know how you feel.',
+        'Look at me. (Do not demand eye contact.)',
+        'Stop crying / Stop making noise.',
+      ],
+    },
+
+    crowd: [
+      {
+        order: 1,
+        title: 'Disperse the crowd quietly — no drama',
+        summary: 'Approach individuals. Keep your voice low.',
+        detail: 'Do not make a scene addressing the whole crowd. Approach individuals quietly. Most people stare because they do not know what else to do — give them a task or a direction.',
+        socialScript: '"Could you give us a bit of space? Thank you so much."',
+      },
+      {
+        order: 2,
+        title: 'Position yourself as a visual shield',
+        summary: 'Stand between them and the crowd. Back to onlookers.',
+        detail: 'Position yourself so your body blocks the crowd\'s line of sight to the person. Face outward. This communicates to the person that you are on their side, and signals to the crowd that this space is protected.',
+        socialScript: null,
+      },
+      {
+        order: 3,
+        title: 'Redirect bystanders with a task',
+        summary: 'Give them something useful to do instead of watching.',
+        detail: 'People watch because they feel helpless. Assign them a job — finding a staff member, fetching water, keeping others back. It redirects their energy and protects the person\'s dignity.',
+        socialScript: '"Could you let a staff member know someone needs a quiet space? That would be really helpful."',
+      },
+    ],
+
+    warnings: [
+      'Do not touch without asking first.',
+      'Do not force eye contact.',
+      'Do not raise your voice or project urgency.',
+      'Do not demand they explain what is wrong.',
+      'Do not say "calm down" — it has never been shown to work.',
+      'Do not call emergency services unless they are in physical danger.',
+      'Do not leave without telling them where you are going.',
+    ],
+  },
+  */
+
+  {
+    id: 'mrt-unwell',
+    icon: '🚇',
+    title: 'Someone Unwell on the Train',
+    summary: 'Vomiting, nausea, or faint on the train',
+    color: '#1A6FD6',
+
+    call: {
+      number: CONFIG.emergencyNumber,
+      script: [
+        'Only call 995 if they collapse, become unconscious, or stop breathing.',
+        'For vomiting or nausea alone — use the train intercom first.',
+        'Give the train line and station or between-station location.',
+        'Say what you can see: conscious, breathing, vomiting.',
+      ],
+      template: `"Someone on the train has collapsed and is unconscious at [LOCATION / TRAIN LINE]. They are [breathing / not breathing]. Please send help."`,
+    },
+
+    physical: [
+      {
+        order: 1,
+        title: 'Assess the situation',
+        summary: 'Are they conscious? Still vomiting? Or have they collapsed?',
+        detail: 'Look at the situation before acting. There are two very different scenarios:\n\n— Conscious and vomiting: distressing but not immediately life-threatening. Focus on comfort and dignity.\n— Unconscious or collapsed: this is a medical emergency. Go to step 8 immediately.',
+        warning: null,
+        socialScript: null,
+      },
+      {
+        order: 2,
+        title: 'Get a plastic bag',
+        summary: 'Yours, or ask the cabin out loud.',
+        detail: 'A plastic bag gives them somewhere to vomit into with dignity and keeps the mess contained. Check your own bag first. If you don\'t have one, ask the cabin out loud — someone usually will.',
+        warning: null,
+        socialScript: '"Does anyone have a plastic bag? Someone needs help."',
+      },
+      {
+        order: 3,
+        title: 'Sit near them',
+        summary: 'Don\'t stand over them. Sit near them.',
+        detail: 'Hand them the bag and let them vomit. Do not try to stop it — vomiting is the body clearing itself. Sit near them and stay. Your presence is enough.\n\nIf there is vomit on the floor, place tissues or any available paper over it while they are still vomiting into the bag. This contains the smell and stops it spreading as the train moves.',
+        warning: null,
+        socialScript: null,
+      },
+      {
+        order: 4,
+        title: 'Point at someone to press the intercom',
+        summary: 'Intercom buttons are at every door. SMRT will respond.',
+        detail: 'You should stay with the person. Point at a specific bystander and ask them to press the emergency intercom button at the nearest train door.\n\nThe SMRT control room will answer. They can stop the train at the next station and have staff ready on the platform.',
+        warning: null,
+        socialScript: '"You — can you press the intercom button at that door and tell them someone is unwell on the train? Thank you."',
+      },
+      {
+        order: 5,
+        title: 'Offer tissues and check in',
+        summary: 'Tissues to wipe their mouth. Ask if they\'re okay.',
+        detail: 'Once they are done vomiting, offer tissues to wipe their mouth. Ask out loud if you don\'t have any.\n\nThen check in quietly: "Are you okay? Is there anything you need?"',
+        warning: null,
+        socialScript: '"Does anyone have tissues they can spare?"',
+      },
+      {
+        order: 6,
+        title: 'At a station — help them off the train',
+        summary: 'Fresh air and space. SMRT staff can help on the platform.',
+        detail: 'If the train stops at a station, gently ask if they would like to get off. Do not insist — let them decide.\n\nIf they agree, help them off slowly. SMRT staff should be alerted and on the platform. The platform has more space, fresher air, and staff can take over.',
+        warning: null,
+        socialScript: '"We\'re at a station — would you like to step off and get some air? I\'ll come with you."',
+      },
+      {
+        order: 7,
+        title: 'Once vomiting has stopped — offer a sweet',
+        summary: 'Mint or ginger helps settle nausea.',
+        detail: 'Once they are no longer actively vomiting and seem stable, a mint or ginger sweet can help settle the stomach and clear the taste. Ask before offering — hold it out and let them take it. Do not give food or water while they are still actively vomiting.',
+        warning: 'Do not give anything by mouth while they are still actively vomiting.',
+        socialScript: '"Would you like a sweet? It might help settle your stomach."',
+      },
+      {
+        order: 8,
+        title: 'If they collapse or become unconscious — call 995',
+        summary: 'This is now a medical emergency.',
+        detail: 'If they stop responding, become unconscious, or stop breathing normally — this is no longer just nausea. Call 995 immediately.\n\nPlace them in the recovery position if they are breathing. Begin CPR if they are not breathing and you are trained. Press the intercom and tell SMRT to stop the train immediately.',
+        warning: 'Unconscious + not breathing = cardiac arrest. Call 995 and begin CPR.',
+        socialScript: null,
+        isCallStep: true,
+      },
+    ],
+
+    say: {
+      intro: '',
+      scripts: [
+        {
+          label: '1 — Sit near them',
+          line: null,
+          when: 'Do not stand over them. Sit next to them so you are at the same level.',
+        },
+        {
+          label: '2 — Once they are done vomiting, check in',
+          line: 'Are you okay? Is there anything you need?',
+          when: 'Wait until the vomiting has settled before speaking. Keep your voice low and calm.',
+        },
+        {
+          label: '3 — Ask if there is someone to call',
+          line: 'Is there someone I can call for you?',
+          when: 'They may want a friend or family member alerted.',
+        },
+      ],
+      doNotSay: [],
+    },
+
+    crowd: [],
+
+    warnings: [
+      'Do not give food or water while they are still actively vomiting.',
+      'Do not film or photograph the person.',
+      'Do not make comments about the smell, the mess, or what they ate.',
+      'Do not assume they are drunk.',
+      'Do not leave them alone.',
+      'If they become unconscious — call 995 immediately. Do not wait.',
+    ],
+  },
+];
+</script>
+<script>
+
+// ── BREATHING ANIMATION ──────────────────────
+const BREATH = [
+  { label: 'Breathe in…',  ms: 4000 },
+  { label: 'Hold…',        ms: 1000 },
+  { label: 'Breathe out…', ms: 4000 },
+];
+let breathIdx = 0, breathTimer = null;
+
+function startBreathing() {
+  const els = document.querySelectorAll('.breathing-phase');
+  function tick() {
+    els.forEach(el => el.textContent = BREATH[breathIdx].label);
+    breathTimer = setTimeout(() => { breathIdx = (breathIdx + 1) % BREATH.length; tick(); }, BREATH[breathIdx].ms);
+  }
+  tick();
+}
+
+function stopBreathing() { clearTimeout(breathTimer); breathIdx = 0; }
+
+// ── STATE ────────────────────────────────────
+let current   = null;   // active scenario object
+let activeTab = 'act';
+let dialNum   = '';
+
+// ── INIT ─────────────────────────────────────
+document.getElementById('app-name').textContent = CONFIG.appName;
+
+document.getElementById('scenario-list').innerHTML = SCENARIOS.map(s => `
+  <button class="scenario-card" onclick="openScenario('${s.id}')" aria-label="Open scenario: ${s.title}">
+    <span class="scenario-icon">${s.icon}</span>
+    <span class="scenario-text">
+      <span class="scenario-title">${s.title}</span>
+      <span class="scenario-summary" style="display:block">${s.summary}</span>
+    </span>
+    <span class="scenario-arrow" aria-hidden="true">›</span>
+  </button>
+`).join('');
+
+// ── OPEN SCENARIO ────────────────────────────
+function openScenario(id) {
+  current = SCENARIOS.find(s => s.id === id);
+  if (!current) return;
+
+  dialNum = current.call.number;
+
+  document.getElementById('guide-title').textContent    = current.title;
+  document.getElementById('call-btn-label').textContent = `Call ${dialNum}`;
+  document.getElementById('modal-num').textContent      = dialNum;
+  document.getElementById('modal-call-btn').onclick     = () => { window.location.href = `tel:${dialNum}`; closeModal(); };
+
+  renderPhysical();
+  renderEmotional();
+  renderCrowd();
+  renderWarn();
+
+  const hasCrowd = current.crowd && current.crowd.length > 0;
+  document.getElementById('tab-crowd').classList.toggle('hidden', !hasCrowd);
+
+  switchTab('physical');
+
+  document.getElementById('screen-home').classList.add('hidden');
+  document.getElementById('screen-guide').classList.remove('hidden');
+  document.getElementById('panels').scrollTop = 0;
+  window.scrollTo(0, 0);
+  startBreathing();
+}
+
+// ── RENDER: PHYSICAL (steps; call script injected into call step) ───
+function renderPhysical() {
+  const call = current.call;
+
+  const callScriptHTML = `
+    <p class="step-detail">${esc(current.physical.find(s => s.isCallStep)?.detail || '')}</p>
+    <div style="margin-top:12px">
+      ${call.script.map((line, i) => `
+        <div class="call-step">
+          <div class="call-step-num">${i + 1}</div>
+          <div class="call-step-text">${esc(line)}</div>
+        </div>
+      `).join('')}
+      <div class="call-template" style="margin-top:12px">
+        <div class="call-template-label">Say this</div>
+        <div class="call-template-text">${esc(call.template)}</div>
+      </div>
+    </div>
+  `;
+
+  document.getElementById('steps-physical').innerHTML = current.physical.map(s => `
+    <div class="step-card">
+      <div class="step-header">
+        <div class="step-num" style="background:var(--danger)">${s.order}</div>
+        <div>
+          <div class="step-title">${s.title}</div>
+          <div class="step-summary">${s.summary}</div>
+        </div>
+      </div>
+      ${s.socialScript ? `<div class="script-block">${esc(s.socialScript)}</div>` : ''}
+      ${s.warning      ? `<div class="warning-block">${esc(s.warning)}</div>` : ''}
+      <button class="expand-btn" onclick="toggleExpand(this)" aria-expanded="false">Why &amp; How ▼</button>
+      <div class="expanded">
+        ${s.isCallStep ? callScriptHTML : escDetail(s.detail)}
+        ${s.findSupplies ? `
+          <a class="find-supplies-btn" href="https://www.google.com/maps/search/pharmacy+near+me" target="_blank" rel="noopener">
+            🗺 Find nearest pharmacy or supermarket
+          </a>
+        ` : ''}
+      </div>
+    </div>
+  `).join('');
+}
+
+// ── RENDER: EMOTIONAL (say scripts + do not say) ──
+function renderEmotional() {
+  const say = current.say;
+  document.getElementById('near-banner').classList.toggle('hidden', current.id !== 'traffic-accident');
+  document.getElementById('say-intro').textContent = say.intro;
+
+  document.getElementById('say-scripts').innerHTML = say.scripts.map(s => `
+    <div class="script-card">
+      <div class="script-card-label">${esc(s.label)}</div>
+      ${s.line ? `<div class="script-card-line">${esc(s.line)}</div>` : ''}
+      <div class="script-card-when">${s.whenHtml || escInline(s.when)}</div>
+    </div>
+  `).join('');
+
+  const qEl = document.getElementById('say-questions');
+  if (say.hardQuestions && say.hardQuestions.length) {
+    qEl.innerHTML = `
+      <p class="do-not-heading" style="margin-top:24px">If they ask you a hard question</p>
+      ${say.hardQuestions.map(q => `
+        <div class="hq-card">
+          <div class="hq-question">${esc(q.question)}</div>
+          <div class="hq-why">${escInline(q.why)}</div>
+          ${q.say ? `<div class="hq-say"><span class="hq-say-label">Say</span> "${esc(q.say)}"</div>` : ''}
+          ${q.options ? q.options.map(o => `
+            <div class="hq-option">
+              <div class="hq-option-when">${esc(o.when)}</div>
+              <div class="hq-say"><span class="hq-say-label">Say</span> "${esc(o.say)}"</div>
+            </div>
+          `).join('') : ''}
+          <div class="hq-donot">⚠ ${escInline(q.doNot)}</div>
+        </div>
+      `).join('')}
+    `;
+  } else {
+    qEl.innerHTML = '';
+  }
+
+  const hasDoNotSay = say.doNotSay && say.doNotSay.length > 0;
+  document.getElementById('say-donot-heading').classList.toggle('hidden', !hasDoNotSay);
+  document.getElementById('say-donot').innerHTML = hasDoNotSay ? say.doNotSay.map(d => `
+    <div class="do-not-item">${esc(d)}</div>
+  `).join('') : '';
+}
+
+// ── RENDER: CROWD ────────────────────────────
+function renderCrowd() {
+  document.getElementById('steps-crowd').innerHTML = current.crowd.map(s => `
+    <div class="step-card">
+      <div class="step-header">
+        <div class="step-num" style="background:var(--caution)">${s.order}</div>
+        <div>
+          <div class="step-title">${s.title}</div>
+          <div class="step-summary">${s.summary}</div>
+        </div>
+      </div>
+      ${s.socialScript ? `<div class="script-block">${esc(s.socialScript)}</div>` : ''}
+      <button class="expand-btn" onclick="toggleExpand(this)" aria-expanded="false">More ▼</button>
+      <div class="expanded">
+        ${escDetail(s.detail)}
+      </div>
+    </div>
+  `).join('');
+}
+
+// ── RENDER: WARNINGS ─────────────────────────
+function renderWarn() {
+  document.getElementById('warn-list').innerHTML = current.warnings.map(w => `
+    <div class="warn-item">
+      <span class="warn-icon">🚫</span>
+      <span>${esc(w)}</span>
+    </div>
+  `).join('');
+}
+
+// ── TAB SWITCHING ────────────────────────────
+const TABS = ['physical', 'emotional', 'crowd', 'warn'];
+
+function switchTab(key) {
+  activeTab = key;
+  TABS.forEach(t => {
+    document.getElementById(`tab-${t}`).classList.toggle('active', t === key);
+    document.getElementById(`tab-${t}`).setAttribute('aria-selected', t === key);
+    document.getElementById(`panel-${t}`).classList.toggle('visible', t === key);
+  });
+  document.getElementById('panels').scrollTop = 0;
+}
+
+// ── EXPAND / COLLAPSE ────────────────────────
+function toggleExpand(btn) {
+  const content = btn.nextElementSibling;
+  const open    = content.classList.toggle('open');
+  btn.textContent     = open ? 'Less ▲' : (btn.textContent.includes('More') ? 'More ▼' : 'Why & How ▼');
+  btn.setAttribute('aria-expanded', open);
+}
+
+// ── HOME ─────────────────────────────────────
+function getLocation() {
+  const val = document.getElementById('location-value');
+  const btn = document.getElementById('location-btn');
+  if (!navigator.geolocation) {
+    val.textContent = 'Location not supported on this device.';
+    val.classList.add('muted');
+    return;
+  }
+  val.textContent = 'Getting location…';
+  val.classList.add('muted');
+  btn.textContent = '…';
+  btn.disabled = true;
+  navigator.geolocation.getCurrentPosition(
+    pos => {
+      const { latitude: lat, longitude: lon } = pos.coords;
+      fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`)
+        .then(r => r.json())
+        .then(data => {
+          const a = data.address || {};
+          const parts = [
+            a.road || a.pedestrian || a.footway,
+            a.suburb || a.neighbourhood || a.quarter,
+            a.postcode ? 'S(' + a.postcode + ')' : null,
+          ].filter(Boolean);
+          val.textContent = parts.length ? parts.join(', ') : `${lat.toFixed(5)}, ${lon.toFixed(5)}`;
+          val.classList.remove('muted');
+          btn.textContent = '↻';
+          btn.disabled = false;
+        })
+        .catch(() => {
+          val.textContent = `${lat.toFixed(5)}, ${lon.toFixed(5)}`;
+          val.classList.remove('muted');
+          btn.textContent = '↻';
+          btn.disabled = false;
+        });
+    },
+    err => {
+      val.textContent = 'Could not get location. Check permissions.';
+      val.classList.add('muted');
+      btn.textContent = 'Retry';
+      btn.disabled = false;
+    },
+    { enableHighAccuracy: true, timeout: 10000 }
+  );
+}
+
+function goHome() {
+  stopBreathing();
+  document.getElementById('screen-guide').classList.add('hidden');
+  document.getElementById('screen-home').classList.remove('hidden');
+  window.scrollTo(0, 0);
+}
+
+// ── MODAL ────────────────────────────────────
+function openModal() {
+  document.getElementById('modal').classList.add('open');
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('open');
+}
+
+document.getElementById('modal').addEventListener('click', e => {
+  if (e.target === document.getElementById('modal')) closeModal();
+});
+
+// ── ESCAPE HELPER ────────────────────────────
+function escDetail(str, tag = 'p', cls = 'step-detail') {
+  return String(str)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
+    .split('\n\n').map(p => `<${tag} class="${cls}">${p.replace(/\n/g, '<br>')}</${tag}>`).join('');
+}
+function escInline(str) {
+  return String(str)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
+    .split('\n\n').join('<br><br>').replace(/\n/g, '<br>');
+}
+
+function esc(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+// ── PRACTICE DATA ─────────────────────────────
+const PRACTICE_SCENARIOS = {
+  traffic: {
+    title: 'Traffic Accident',
+    scenes: [
+      {
+        situation: "You're walking along a road. You hear a loud crash. A car has hit a road divider 20 metres ahead. You can see someone inside the car.",
+        svg: `<svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+          <rect width="320" height="180" fill="#87CEEB"/>
+          <rect y="110" width="320" height="70" fill="#555"/>
+          <rect y="130" width="320" height="4" fill="#FFD700" opacity="0.6"/>
+          <rect x="140" y="105" width="12" height="40" fill="#ccc" rx="2"/>
+          <rect x="152" y="105" width="12" height="40" fill="#bbb" rx="2"/>
+          <g transform="translate(170,90) rotate(-8)">
+            <rect x="0" y="14" width="70" height="30" fill="#C0392B" rx="4"/>
+            <rect x="8" y="4" width="50" height="24" fill="#85C1E9" rx="3"/>
+            <circle cx="12" cy="46" r="8" fill="#222"/>
+            <circle cx="58" cy="46" r="8" fill="#222"/>
+            <ellipse cx="35" cy="16" rx="12" ry="8" fill="#333" opacity="0.3"/>
+          </g>
+          <circle cx="50" cy="115" r="8" fill="#F5CBA7"/>
+          <rect x="46" y="123" width="8" height="16" fill="#E74C3C"/>
+          <rect x="38" y="127" width="8" height="3" fill="#F5CBA7" rx="1"/>
+          <rect x="54" y="127" width="8" height="3" fill="#F5CBA7" rx="1"/>
+          <circle cx="280" cy="115" r="7" fill="#F5CBA7"/>
+          <rect x="276" y="122" width="8" height="14" fill="#3498DB"/>
+          <text x="160" y="170" font-size="10" fill="#fff" text-anchor="middle" opacity="0.7">20 metres away</text>
+        </svg>`,
+        choices: [
+          { text: "Run straight to the car to check on the driver", correct: false, feedback: "An injured helper makes things worse. Always scan for oncoming traffic, fuel leaks, or fire before approaching." },
+          { text: "Stop. Look around — check for oncoming traffic and hazards first", correct: true, feedback: "Correct. Your safety comes first. Scan the scene before you move. Only approach when it is safe to do so." },
+          { text: "Call 995 immediately from where you are", correct: false, feedback: "Calling 995 is important, but assess the scene first — then call while approaching safely, or delegate the call to someone else." },
+        ]
+      },
+      {
+        situation: "The scene looks safe. You've reached the car. The driver is conscious. Bystanders are gathering.",
+        svg: `<svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+          <rect width="320" height="180" fill="#87CEEB"/>
+          <rect y="110" width="320" height="70" fill="#555"/>
+          <g transform="translate(100,85) rotate(-5)">
+            <rect x="0" y="14" width="80" height="34" fill="#C0392B" rx="4"/>
+            <rect x="8" y="4" width="60" height="24" fill="#85C1E9" rx="3"/>
+            <circle cx="14" cy="50" r="8" fill="#222"/>
+            <circle cx="66" cy="50" r="8" fill="#222"/>
+          </g>
+          <rect x="178" y="90" width="12" height="46" fill="#ccc" rx="2"/>
+          <circle cx="60" cy="108" r="8" fill="#F5CBA7"/>
+          <rect x="56" y="116" width="8" height="16" fill="#27AE60"/>
+          <rect x="48" y="118" width="8" height="3" fill="#F5CBA7" rx="1"/>
+          <rect x="64" y="118" width="8" height="3" fill="#F5CBA7" rx="1"/>
+          <circle cx="250" cy="112" r="7" fill="#F5CBA7"/>
+          <rect x="246" y="119" width="8" height="14" fill="#8E44AD"/>
+          <circle cx="270" cy="114" r="6" fill="#F5CBA7"/>
+          <rect x="266" y="120" width="7" height="12" fill="#E74C3C"/>
+          <rect x="55" y="95" width="30" height="14" fill="#fff" rx="3" opacity="0.85"/>
+          <text x="70" y="106" font-size="8" fill="#27AE60" text-anchor="middle" font-weight="bold">HAZARD</text>
+        </svg>`,
+        choices: [
+          { text: "Turn on the crashed car's hazard lights and get someone to direct traffic", correct: true, feedback: "Correct. Making the scene visible protects everyone — including you and the victim. Get a bystander to direct traffic while you attend to the injured." },
+          { text: "Open the car door and try to pull the driver out", correct: false, feedback: "Never move an injured person — they may have a spinal injury. Only move them if there is immediate danger like fire or flooding." },
+          { text: "Shout for help from bystanders generally", correct: false, feedback: "Shouting at a crowd is less effective. Point at a specific person and give them a task — 'You, in the blue shirt, call 995 now.'" },
+        ]
+      },
+      {
+        situation: "You're with the driver. They're conscious but shaking and distressed. You need to say something.",
+        svg: `<svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+          <rect width="320" height="180" fill="#87CEEB"/>
+          <rect y="110" width="320" height="70" fill="#555"/>
+          <g transform="translate(150,80)">
+            <rect x="0" y="14" width="80" height="34" fill="#C0392B" rx="4"/>
+            <rect x="8" y="4" width="60" height="24" fill="#85C1E9" rx="3"/>
+            <circle cx="14" cy="50" r="8" fill="#222"/>
+            <circle cx="66" cy="50" r="8" fill="#222"/>
+            <circle cx="35" cy="14" r="7" fill="#F5CBA7"/>
+            <rect x="31" y="21" width="8" height="12" fill="#555"/>
+          </g>
+          <circle cx="130" cy="108" r="9" fill="#F5CBA7"/>
+          <rect x="126" y="117" width="9" height="18" fill="#27AE60"/>
+          <rect x="117" y="121" width="9" height="3" fill="#F5CBA7" rx="1"/>
+          <line x1="135" y1="121" x2="152" y2="118" stroke="#F5CBA7" stroke-width="3" stroke-linecap="round"/>
+          <rect x="100" y="145" width="80" height="22" fill="#fff" rx="6" opacity="0.9"/>
+          <text x="140" y="160" font-size="9" fill="#333" text-anchor="middle">"Hi, I'm [name]…"</text>
+        </svg>`,
+        choices: [
+          { text: '"Are you okay? What happened?"', correct: false, feedback: "Don't ask them to describe what happened — they may be in shock and confused." },
+          { text: '"Hi, my name is [NAME]. I\'ve called for help — they\'re on the way."', correct: true, feedback: "Correct. Identify yourself, then immediately reassure them help is coming. This is the NEAR approach — Near, Explain, Ask, Reassure." },
+          { text: '"Don\'t worry, you\'ll be fine."', correct: false, feedback: "Never promise an outcome you can't guarantee. False reassurance can undermine trust. Stick to what you know: help is coming, you're here." },
+        ]
+      },
+    ],
+    closing: { icon: '✅', title: 'Well done.', text: 'You made it through the traffic accident scenario. The key things to remember: safety first, make the scene visible, identify yourself, and never promise an outcome.' }
+  },
+
+  train: {
+    title: 'Someone Unwell on the Train',
+    scenes: [
+      {
+        situation: "You're on a train. The person sitting next to you suddenly starts vomiting on the floor. Other passengers are moving away.",
+        svg: `<svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+          <rect width="320" height="180" fill="#2C3E50"/>
+          <rect x="10" y="20" width="300" height="140" fill="#34495E" rx="8"/>
+          <rect x="20" y="30" width="80" height="60" fill="#4A6FA5" rx="4"/>
+          <rect x="220" y="30" width="80" height="60" fill="#4A6FA5" rx="4"/>
+          <rect x="20" y="100" width="80" height="60" fill="#4A6FA5" rx="4"/>
+          <rect x="220" y="100" width="80" height="60" fill="#4A6FA5" rx="4"/>
+          <circle cx="160" cy="75" r="10" fill="#F5CBA7"/>
+          <rect x="155" y="85" width="10" height="20" fill="#E74C3C"/>
+          <ellipse cx="155" cy="112" rx="15" ry="5" fill="#F0E68C" opacity="0.7"/>
+          <circle cx="230" cy="80" r="8" fill="#F5CBA7" opacity="0.5"/>
+          <rect x="226" y="88" width="8" height="16" fill="#3498DB" opacity="0.5"/>
+          <circle cx="90" cy="80" r="8" fill="#F5CBA7" opacity="0.5"/>
+          <rect x="86" y="88" width="8" height="16" fill="#8E44AD" opacity="0.5"/>
+          <text x="160" y="168" font-size="9" fill="#aaa" text-anchor="middle">Others moving away →</text>
+        </svg>`,
+        choices: [
+          { text: "Move away too — it's not your problem", correct: false, feedback: "Moving away leaves someone vulnerable and alone in a public place. Staying is the right thing to do." },
+          { text: "Stay with them and ask if anyone nearby has a bag", correct: true, feedback: "Correct. Stay with them. A bag helps contain the mess and gives them dignity. Ask nearby passengers — someone usually has one." },
+          { text: "This is not your stop but suddenly it is", correct: false, feedback: "Tempting. But leaving someone alone in this state isn't the move." },
+        ]
+      },
+      {
+        situation: "Someone passes a bag. They're vomiting into it. The SMRT intercom has been pressed. What do you do now?",
+        svg: `<svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+          <rect width="320" height="180" fill="#2C3E50"/>
+          <rect x="10" y="20" width="300" height="140" fill="#34495E" rx="8"/>
+          <rect x="220" y="30" width="80" height="60" fill="#4A6FA5" rx="4"/>
+          <rect x="20" y="100" width="80" height="60" fill="#4A6FA5" rx="4"/>
+          <rect x="220" y="100" width="80" height="60" fill="#4A6FA5" rx="4"/>
+          <rect x="20" y="30" width="40" height="60" fill="#4A6FA5" rx="4"/>
+          <rect x="64" y="38" width="22" height="44" fill="#E74C3C" rx="3" opacity="0.9"/>
+          <text x="75" y="55" font-size="7" fill="#fff" text-anchor="middle">INTER</text>
+          <text x="75" y="65" font-size="7" fill="#fff" text-anchor="middle">COM</text>
+          <circle cx="75" cy="73" r="4" fill="#FFD700"/>
+          <circle cx="155" cy="80" r="10" fill="#F5CBA7"/>
+          <rect x="150" y="90" width="10" height="20" fill="#E74C3C"/>
+          <rect x="148" y="105" width="20" height="28" fill="#8B6914" rx="2" opacity="0.8"/>
+          <circle cx="110" cy="85" r="9" fill="#F5CBA7"/>
+          <rect x="106" y="94" width="9" height="18" fill="#27AE60"/>
+        </svg>`,
+        choices: [
+          { text: "Begin stress-eating your own snacks", correct: false, feedback: "Understandable. But maybe not the moment." },
+          { text: "Sit near them, stay quiet, let them vomit", correct: true, feedback: "Correct. Your presence is enough. Don't try to stop the vomiting — the body is doing what it needs to do. Quiet, calm presence is the right move." },
+          { text: "Try to get them to stand up and move to the door", correct: false, feedback: "Don't move them while they're vomiting — they could fall or make things worse. Let them settle first." },
+        ]
+      },
+      {
+        situation: "They've finished vomiting. They look pale and weak. They're sitting quietly.",
+        svg: `<svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+          <rect width="320" height="180" fill="#2C3E50"/>
+          <rect x="10" y="20" width="300" height="140" fill="#34495E" rx="8"/>
+          <rect x="20" y="30" width="80" height="60" fill="#4A6FA5" rx="4"/>
+          <rect x="220" y="30" width="80" height="60" fill="#4A6FA5" rx="4"/>
+          <rect x="20" y="100" width="80" height="60" fill="#4A6FA5" rx="4"/>
+          <rect x="220" y="100" width="80" height="60" fill="#4A6FA5" rx="4"/>
+          <circle cx="165" cy="72" r="10" fill="#D5D8DC"/>
+          <rect x="160" y="82" width="10" height="20" fill="#AAB7B8"/>
+          <circle cx="120" cy="78" r="9" fill="#F5CBA7"/>
+          <rect x="116" y="87" width="9" height="18" fill="#27AE60"/>
+          <line x1="129" y1="93" x2="160" y2="88" stroke="#F5CBA7" stroke-width="3" stroke-linecap="round"/>
+          <rect x="95" y="118" width="120" height="22" fill="#fff" rx="6" opacity="0.9"/>
+          <text x="155" y="133" font-size="8" fill="#333" text-anchor="middle">"Are you okay?"</text>
+        </svg>`,
+        choices: [
+          { text: '"Are you okay?"', correct: true, feedback: "Correct. A simple, direct check-in. Let them respond in their own time. Follow up with: 'Is there someone I can call for you?'" },
+          { text: '"What did you eat?"', correct: false, feedback: "This can feel like an interrogation and isn't helpful in the moment. Focus on how they are now, not what caused it." },
+          { text: '"You should get off at the next stop."', correct: false, feedback: "Don't make decisions for them. Let them decide. You can offer — 'Would you like to get off at the next stop?' — but don't push." },
+        ]
+      },
+    ],
+    closing: { icon: '✅', title: 'Well done.', text: 'You got through the train scenario. The key things: stay, help them get a bag, sit quietly with them, and let them lead — you\'re there to support, not take over.' }
+  }
+};
+
+let practiceScenario = null;
+let practiceSceneIdx = 0;
+
+function openPracticeHome() {
+  document.getElementById('screen-home').classList.add('hidden');
+  document.getElementById('screen-practice-home').classList.remove('hidden');
+  window.scrollTo(0, 0);
+}
+
+function goToPracticeHome() {
+  document.getElementById('screen-practice-scene').classList.add('hidden');
+  document.getElementById('screen-practice-home').classList.remove('hidden');
+  window.scrollTo(0, 0);
+}
+
+function startPractice(id) {
+  practiceScenario = PRACTICE_SCENARIOS[id];
+  practiceSceneIdx = 0;
+  document.getElementById('screen-practice-home').classList.add('hidden');
+  document.getElementById('screen-practice-scene').classList.remove('hidden');
+  renderPracticeScene();
+}
+
+function renderPracticeScene() {
+  const scenes = practiceScenario.scenes;
+  const scene = scenes[practiceSceneIdx];
+  const total = scenes.length;
+
+  document.getElementById('practice-progress').textContent = `Situation ${practiceSceneIdx + 1} of ${total}`;
+  document.getElementById('practice-illustration').innerHTML = scene.svg;
+  document.getElementById('practice-situation').textContent = scene.situation;
+  document.getElementById('practice-feedback').classList.add('hidden');
+  document.getElementById('practice-feedback').innerHTML = '';
+  document.getElementById('practice-next-btn').classList.add('hidden');
+
+  document.getElementById('practice-choices').innerHTML = scene.choices.map((c, i) => `
+    <button class="practice-choice" onclick="selectPracticeChoice(${i})">${c.text}</button>
+  `).join('');
+
+  window.scrollTo(0, 0);
+}
+
+function selectPracticeChoice(idx) {
+  const scene = practiceScenario.scenes[practiceSceneIdx];
+  const choices = scene.choices;
+  const btns = document.querySelectorAll('.practice-choice');
+
+  btns.forEach((btn, i) => {
+    btn.disabled = true;
+    if (i === idx) {
+      btn.classList.add(choices[i].correct ? 'correct' : 'wrong');
+    } else {
+      btn.classList.add('dimmed');
+    }
+  });
+
+  const chosen = choices[idx];
+  const fb = document.getElementById('practice-feedback');
+  fb.className = `practice-feedback ${chosen.correct ? 'correct' : 'wrong'}`;
+  fb.innerHTML = `<strong>${chosen.correct ? '✓ Right' : '✗ Not quite'}</strong> — ${chosen.feedback}`;
+  fb.classList.remove('hidden');
+
+  const isLast = practiceSceneIdx === practiceScenario.scenes.length - 1;
+  const nextBtn = document.getElementById('practice-next-btn');
+  nextBtn.textContent = isLast ? 'See how you did →' : 'Continue →';
+  nextBtn.classList.remove('hidden');
+}
+
+function practiceNext() {
+  const isLast = practiceSceneIdx === practiceScenario.scenes.length - 1;
+  if (isLast) {
+    showPracticeClosing();
+  } else {
+    practiceSceneIdx++;
+    renderPracticeScene();
+  }
+}
+
+function showPracticeClosing() {
+  const c = practiceScenario.closing;
+  document.getElementById('practice-illustration').innerHTML = '';
+  document.getElementById('practice-progress').textContent = '';
+  document.getElementById('practice-situation').innerHTML = '';
+  document.getElementById('practice-question') && (document.querySelector('.practice-question').classList.add('hidden'));
+  document.getElementById('practice-choices').innerHTML = '';
+  document.getElementById('practice-feedback').classList.add('hidden');
+  document.getElementById('practice-next-btn').classList.add('hidden');
+
+  document.getElementById('practice-illustration').innerHTML = `
+    <div class="practice-closing">
+      <div class="practice-closing-icon">${c.icon}</div>
+      <div class="practice-closing-title">${c.title}</div>
+      <div class="practice-closing-text">${c.text}</div>
+      <button class="practice-restart" onclick="startPractice('${Object.keys(PRACTICE_SCENARIOS).find(k => PRACTICE_SCENARIOS[k] === practiceScenario)}')">Try again</button>
+      <button class="practice-home-btn" onclick="goToPracticeHome()">More scenarios</button>
+    </div>
+  `;
+  window.scrollTo(0, 0);
+}
+
+</script>
+</body>
+</html>
