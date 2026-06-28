@@ -101,6 +101,7 @@
       text-overflow: ellipsis;
     }
     .location-value.muted { color: var(--muted); font-weight: 400; }
+    .location-hint { font-size: 11px; color: var(--muted); margin-top: 3px; line-height: 1.4; }
     .location-btn {
       background: var(--danger);
       color: #fff;
@@ -681,6 +682,7 @@
     <div class="location-content">
       <div class="location-label">Your location</div>
       <div class="location-value" id="location-value">Tap to get your location</div>
+      <div class="location-hint">Get your postal code to tell the 995 operator where you are</div>
     </div>
     <button class="location-btn" id="location-btn" onclick="getLocation()">Get</button>
   </div>
@@ -741,6 +743,12 @@
       <div class="panel-heading">
         <div class="panel-dot" style="background:var(--danger)"></div>
         <span class="panel-title" style="color:var(--danger)">Physical Response</span>
+      </div>
+      <div class="near-banner" id="safe-banner">
+        <div class="near-row"><span class="near-letter" style="color:var(--danger)">S</span><span class="near-text"><strong>Scan</strong> — check for danger before approaching</span></div>
+        <div class="near-row"><span class="near-letter" style="color:var(--danger)">A</span><span class="near-text"><strong>Alert the scene</strong> — turn on hazard lights, get someone to direct traffic</span></div>
+        <div class="near-row"><span class="near-letter" style="color:var(--danger)">F</span><span class="near-text"><strong>Flag for help</strong> — call 995, or point at someone specific to call</span></div>
+        <div class="near-row"><span class="near-letter" style="color:var(--danger)">E</span><span class="near-text"><strong>Engage</strong> — approach, introduce yourself, stay with them</span></div>
       </div>
       <div id="steps-physical"></div>
     </div>
@@ -1568,6 +1576,7 @@ function renderPhysical() {
 function renderEmotional() {
   const say = current.say;
   document.getElementById('near-banner').classList.toggle('hidden', current.id !== 'traffic-accident');
+  document.getElementById('safe-banner').classList.toggle('hidden', current.id !== 'traffic-accident');
   document.getElementById('say-intro').textContent = say.intro;
 
   document.getElementById('say-scripts').innerHTML = say.scripts.map(s => `
