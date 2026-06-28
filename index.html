@@ -228,30 +228,34 @@
 
     /* tab bar */
     .tab-bar {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      display: flex;
+      gap: 8px;
+      padding: 10px 16px;
       border-top: 1px solid var(--border);
+      background: var(--surface);
     }
 
     .tab-btn {
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       align-items: center;
+      gap: 5px;
+      flex: 1;
       justify-content: center;
-      gap: 2px;
-      padding: 8px 2px;
-      cursor: pointer;
+      padding: 8px 6px;
       border: none;
-      border-bottom: 3px solid transparent;
-      background: none;
-      transition: border-color 0.15s;
+      border-radius: 20px;
+      background: var(--surface2);
+      cursor: pointer;
       -webkit-tap-highlight-color: transparent;
+      transition: background 0.15s;
     }
 
-    .tab-btn .t-icon { font-size: 18px; }
-    .tab-btn .t-label { font-size: 9px; font-weight: 700; letter-spacing: 0.3px; color: var(--muted); text-transform: uppercase; }
-    .tab-btn.active .t-label { color: var(--text); }
-    .tab-btn.active { border-bottom-color: var(--danger); }
+    .tab-btn .t-icon { font-size: 15px; }
+    .tab-btn .t-label { font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.3px; }
+    .tab-btn.active { background: var(--text); }
+    .tab-btn.active .t-label { color: #fff; }
+    .tab-btn.active .t-icon { filter: brightness(10); }
 
     /* panels */
     .panels {
@@ -717,7 +721,7 @@
     </div>
 
     <button class="call-btn" id="call-btn" onclick="openModal()" aria-label="Call emergency services">
-      📞 <span id="call-btn-label">Call 999</span>
+      📞 <span id="call-btn-label">Call 995</span>
     </button>
 
     <div class="tab-bar" role="tablist">
@@ -849,7 +853,7 @@
 // CONFIGURATION — edit these for your country
 // ─────────────────────────────────────────────
 const CONFIG = {
-  emergencyNumber: '999',      // ← change per country (911, 112, 000, etc.)
+  emergencyNumber: '995',      // ← change per country (911, 112, 000, etc.)
   crisisLine:      '116 123',  // ← mental health / crisis line
   appName:         'Emergency Guide',
 };
